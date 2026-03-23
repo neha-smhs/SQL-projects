@@ -1,0 +1,39 @@
+USE restaurant_db;
+
+
+-- Dig into the customer data to see which menu items are doing well /not well and what top customers seem to like the best
+
+-- Tasks for Objective 1 : Explore the items table
+-- Your first objective is to better understand the items table by finding the number of rows in the table, the least and most expensive items, and the item prices within each category.
+
+-- 1. View the menu_items table and write a query to find the number of items on the menu
+SELECT * FROM menu_items;
+SELECT COUNT(*) FROM menu_items;
+
+-- 2. What are the least and most expensive items on the menu?
+SELECT * FROM menu_items
+ORDER BY price;
+
+SELECT * FROM menu_items
+ORDER BY price DESC;
+
+-- 3. How many Italian dishes are on the menu? What are the least and most expensive Italian dishes on the menu?
+SELECT category , COUNT(*) as total_dishes
+FROM menu_items
+WHERE category = 'Italian';
+
+SELECT *
+FROM menu_items
+WHERE category = 'Italian'
+ORDER BY price;
+
+-- 4. How many dishes are in each category? What is the average dish price within each category?
+
+SELECT category , COUNT(menu_item_id) AS total_items
+FROM menu_items
+GROUP BY category;
+
+SELECT category , AVG(price) AS average_price
+FROM menu_items
+GROUP BY category;
+
